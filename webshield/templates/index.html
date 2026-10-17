@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebShield — The Black Cat Security Scanner</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="night-theme">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">🐈</div>
+          <div>
+            <h1>WebShield</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link active" href="/">🏠 Dashboard</a>
+          <a class="nav-link" href="/scan">🔍 New Scan</a>
+          <a class="nav-link" href="/history">📜 Scan History</a>
+          <a class="nav-link" href="/about">🛡 Security Checks</a>
+          <a class="nav-link" href="/about">🐾 About WebShield</a>
+        </nav>
+
+        <div class="sidebar-footer">Stay curious. Stay secure. 🐾</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">WebShield</p>
+            <h2>Where curious cats hunt suspicious vulnerabilities.</h2>
+            <p class="subtitle">
+              An educational web security scanner for authorized testing.
+            </p>
+          </div>
+        </header>
+
+        <section class="dashboard-grid">
+          <div class="scan-panel hero-card">
+            <div class="cat-illustration" aria-label="Black cat mascot">🐈</div>
+            <div class="panel-headline">🐈 What should we inspect?</div>
+            <form id="scan-form" class="scan-form">
+              <input
+                id="target-url"
+                type="url"
+                placeholder="https://example.com"
+                value="https://example.com"
+              />
+              <button type="submit" class="primary-button">
+                🐾 Start Scan
+              </button>
+            </form>
+            <div id="status-indicator" class="status-indicator idle">Ready</div>
+            <div id="scan-message" class="scan-message">
+              🐾 Cat is waking up...
+            </div>
+            <div id="auth-prompt" class="auth-prompt" hidden>
+              <p>This website requires authentication. Please provide credentials to continue crawling.</p>
+              <label for="auth-username">Username/email</label>
+              <input id="auth-username" name="username" type="text" autocomplete="username" required />
+              <label for="auth-password">Password</label>
+              <div class="password-field">
+                <input id="auth-password" name="password" type="password" autocomplete="current-password" required />
+                <button type="button" id="toggle-password" class="password-toggle" aria-controls="auth-password" aria-pressed="false">Show</button>
+              </div>
+              <button type="button" id="auth-submit" class="primary-button">Continue securely</button>
+              <p id="auth-error" class="auth-error"></p>
+            </div>
+            <div class="scan-message scan-metrics" id="scan-metrics" aria-live="polite">
+              <div>Current URL: <strong id="current-url">-</strong></div>
+              <div>Pages discovered: <strong id="pages-discovered">0</strong></div>
+              <div>Pages scanned: <strong id="pages-scanned">0</strong></div>
+              <div>APIs discovered: <strong id="apis-discovered">0</strong></div>
+              <div>APIs scanned: <strong id="apis-scanned">0</strong></div>
+              <div>Findings detected: <strong id="findings-detected">0</strong></div>
+              <div>Current scan status: <strong id="scan-status">queued</strong></div>
+            </div>
+            <div class="progress-wrap">
+              <div class="progress-bar">
+                <div id="scan-progress" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-panel">
+            <div class="metric-card purple">
+              <span>Scans</span>
+              <strong id="scan-count">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>URLs</span>
+              <strong id="urls-count">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Findings</span>
+              <strong id="findings-count">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="severity-grid">
+          <div class="metric-box critical">
+            <span>Critical</span><strong id="critical-total">0</strong>
+          </div>
+          <div class="metric-box high">
+            <span>High</span><strong id="high-total">0</strong>
+          </div>
+          <div class="metric-box medium">
+            <span>Medium</span><strong id="medium-total">0</strong>
+          </div>
+          <div class="metric-box low">
+            <span>Low</span><strong id="low-total">0</strong>
+          </div>
+          <div class="metric-box info">
+            <span>Info</span><strong id="info-total">0</strong>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js', v='20260913') }}"></script>
+  </body>
+</html>

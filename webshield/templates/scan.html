@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebShield — New Scan</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="night-theme">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">🐈</div>
+          <div>
+            <h1>WebShield</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">🏠 Dashboard</a>
+          <a class="nav-link active" href="/scan">🔍 New Scan</a>
+          <a class="nav-link" href="/history">📜 Scan History</a>
+          <a class="nav-link" href="/about">🛡 Security Checks</a>
+          <a class="nav-link" href="/about">🐾 About WebShield</a>
+        </nav>
+
+        <div class="sidebar-footer">Stay curious. Stay secure. 🐾</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Targeted scan</p>
+            <h2>🐈 The Black Cat is prowling.</h2>
+            <p class="subtitle">
+              A quiet, focused sweep for suspicious behavior.
+            </p>
+          </div>
+        </header>
+
+        <section class="panel scan-panel large-scan-panel">
+          <div class="cat-illustration" aria-label="Black cat mascot">🐈</div>
+          <form id="scan-form" class="scan-form">
+            <label for="target-url">Target URL</label>
+            <input
+              id="target-url"
+              type="url"
+              placeholder="https://example.com"
+              required
+            />
+            <div class="button-row">
+              <button type="submit" class="primary-button">
+                🐾 Start Scan
+              </button>
+              <button type="button" id="clear-button" class="secondary-button">
+                Clear
+              </button>
+            </div>
+          </form>
+
+          <div id="status-indicator" class="status-indicator idle">Ready</div>
+          <div id="scan-message" class="scan-message">
+            🐾 Cat is waking up...
+          </div>
+          <div class="scan-message" id="scan-metrics">
+            Pages discovered: 0 | Pages scanned: 0 | APIs discovered: 0
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar">
+              <div id="scan-progress" class="progress-fill"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

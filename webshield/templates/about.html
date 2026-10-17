@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About WebShield</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="night-theme">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">🐈</div>
+          <div>
+            <h1>WebShield</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">🏠 Dashboard</a>
+          <a class="nav-link" href="/scan">🔍 New Scan</a>
+          <a class="nav-link" href="/history">📜 Scan History</a>
+          <a class="nav-link active" href="/about">🛡 Security Checks</a>
+          <a class="nav-link" href="/about">🐾 About WebShield</a>
+        </nav>
+
+        <div class="sidebar-footer">Stay curious. Stay secure. 🐾</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2>🐾 A curious cat with a security conscience.</h2>
+            <p class="subtitle">
+              Purpose-built for legitimate web security assessment and learning.
+            </p>
+          </div>
+        </header>
+
+        <section class="panel about-panel">
+          <h3>Project Mission</h3>
+          <p>
+            WebShield is a real portfolio-grade security tool that inspects HTTP
+            behavior, follows same-domain links, and checks for common web risks
+            in a safe, responsible way.
+          </p>
+          <p>
+            It is intended for authorized testing only and avoids destructive or
+            hostile actions.
+          </p>
+          <ul>
+            <li>Same-domain crawling for discovery</li>
+            <li>Security header validation</li>
+            <li>Reflected XSS and SQL injection heuristics</li>
+            <li>Sensitive path checks</li>
+            <li>Historical result storage</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js', v='20260912') }}"></script>
+  </body>
+</html>

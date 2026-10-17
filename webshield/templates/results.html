@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebShield — Scan Complete</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="night-theme">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">🐈</div>
+          <div>
+            <h1>WebShield</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">🏠 Dashboard</a>
+          <a class="nav-link" href="/scan">🔍 New Scan</a>
+          <a class="nav-link" href="/history">📜 Scan History</a>
+          <a class="nav-link" href="/about">🛡 Security Checks</a>
+          <a class="nav-link" href="/about">🐾 About WebShield</a>
+        </nav>
+
+        <div class="sidebar-footer">Stay curious. Stay secure. 🐾</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Scan complete</p>
+            <h2>🐈 Scan Complete</h2>
+            <p class="subtitle">Target: {{ scan.target_url }}</p>
+          </div>
+        </header>
+
+        {% if scan %}
+        <section class="results-summary panel">
+          <div class="summary-grid">
+            <div class="result-stat">
+              <span>🐾 URLs Scanned</span><strong>{{ scan.total_urls }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>🛡 Vulnerabilities</span
+              ><strong>{{ scan.vulnerability_count }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>⚠ High Risk</span
+              ><strong>{{ scan.high + scan.critical }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>✓ Secure Checks</span
+              ><strong>{{ scan.informational }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>Pages Discovered</span><strong>{{ scan.pages_discovered }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>Pages Scanned</span><strong>{{ scan.pages_crawled }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>Maximum Crawl Limit</span><strong>{{ scan.max_pages }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>Pages Remaining</span><strong>{{ scan.pages_remaining }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>APIs Discovered</span><strong>{{ scan.apis_discovered }}</strong>
+            </div>
+            <div class="result-stat">
+              <span>APIs Scanned</span><strong>{{ scan.apis_scanned }}</strong>
+            </div>
+          </div>
+
+          <p class="subtitle">
+            {% if scan.crawl_limit_reached %}
+              Crawl limit reached. Additional discovered pages were not crawled.
+            {% else %}
+              Crawl completed because no more internal pages were discovered.
+            {% endif %}
+          </p>
+
+          <div class="button-row result-actions">
+            <a
+              class="primary-button"
+              href="/results/{{ scan_id }}/report"
+              target="_blank"
+              >Generate Report</a
+            >
+            <a class="secondary-button" href="/history">Back to History</a>
+          </div>
+        </section>
+
+        <section class="panel findings-panel">
+          <div class="panel-header">
+            <h3>Cat's Findings</h3>
+          </div>
+          <div class="findings-list">
+            {% for item in scan.findings %}
+            <article class="finding-card">
+              <h4>🐾 {{ item.title }}</h4>
+              <div class="finding-meta">
+                <span class="severity-badge {{ item.severity.lower() }}"
+                  >{{ item.severity }}</span
+                >
+                <span>URL: {{ item.url }}</span>
+              </div>
+              <p><strong>Description:</strong> {{ item.description }}</p>
+              <p><strong>Evidence:</strong> {{ item.evidence }}</p>
+              <p><strong>💡 Recommended Fix:</strong> {{ item.remediation }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+        {% else %}
+        <section class="panel empty-panel">
+          <p>No scan data could be found for this result.</p>
+        </section>
+        {% endif %}
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

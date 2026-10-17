@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebShield — History</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="night-theme">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">🐈</div>
+          <div>
+            <h1>WebShield</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">🏠 Dashboard</a>
+          <a class="nav-link" href="/scan">🔍 New Scan</a>
+          <a class="nav-link active" href="/history">📜 Scan History</a>
+          <a class="nav-link" href="/about">🛡 Security Checks</a>
+          <a class="nav-link" href="/about">🐾 About WebShield</a>
+        </nav>
+
+        <div class="sidebar-footer">Stay curious. Stay secure. 🐾</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">History</p>
+            <h2>🐾 Previous cat tracks</h2>
+            <p class="subtitle">Past scans, saved for review.</p>
+          </div>
+        </header>
+
+        <section class="panel history-panel">
+          <div class="panel-header">
+            <h3>Saved scans</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Target</th>
+                  <th>Date</th>
+                  <th>URLs</th>
+                  <th>Findings</th>
+                  <th>Risk</th>
+                  <th>Open</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js', v='20260912') }}"></script>
+  </body>
+</html>
